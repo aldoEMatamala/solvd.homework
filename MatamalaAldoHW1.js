@@ -38,25 +38,29 @@ String.prototype.minus = function (str) {
     return result;
 }
 String.prototype.divide = function (str) {
-    let result = '';
-    let dividend = this;
+    if (str === '0') {
+        return "Division by zero is not allowed.";
+    } else {
+        let result = '';
+        let dividend = this;
 
-    if (dividend.length >= str.length) {
-        let quotient = 0;
+        if (dividend.length >= str.length) {
+            let quotient = 0;
 
-        let dividendNum = +dividend;
-        let strNum = +str;
+            let dividendNum = +dividend;
+            let strNum = +str;
 
-        while (dividendNum >= strNum) {
-            dividend = dividend.minus(str);
-            dividendNum = +dividend;
-            quotient++;
+            while (dividendNum >= strNum) {
+                dividend = dividend.minus(str);
+                dividendNum = +dividend;
+                quotient++;
+            }
+
+            result += quotient;
         }
 
-        result += quotient;
+        return result;
     }
-
-    return result;
 };
 
 
@@ -70,5 +74,5 @@ String.prototype.multiply = function (str) {
 
 console.log("120 + 45 = " + "120".plus("45"));    // Output: "165"
 console.log("30 - 12 = " + "30".minus("12"));   // Output: "18"
-console.log("100 / 3 = " + "100".divide("3"));  // Output: "33"
-console.log("12 * 12 = " + "12".multiply("12"));  // Output: "144"
+console.log("100 / 2 = " + "100".divide("2"));  // error
+console.log("100000000000000000000000 * 99999999 = " + "100000000000000000000000".multiply("99999999"));  // Output: "144"
